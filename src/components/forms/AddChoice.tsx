@@ -81,7 +81,7 @@ const AddChoice = ({
 
 interface AddChoiceProps {
     cancelAddChoice: () => void;
-    addChoice: ({}: Choice) => void;
+    addChoice: ({}: Omit<Choice, "score">) => void;
     attributes: Attribute[];
 }
 
