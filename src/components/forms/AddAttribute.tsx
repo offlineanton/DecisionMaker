@@ -8,6 +8,7 @@ import { Attribute } from "../DecisionMaker";
 export const ButtonContainer = styled.div`
     display: flex;
     justify-content: space-between;
+    margin-top: 1em
 `;
 
 const AddAttribute = ({
@@ -39,7 +40,7 @@ const AddAttribute = ({
 
             <Input
                 required
-                style={{ marginBottom: "2em" }}
+                style={{ marginBottom: "1em" }}
                 label="Weight"
                 type="number"
                 name="attribute-weight"

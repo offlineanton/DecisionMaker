@@ -2,14 +2,25 @@ import React, { useState } from "react";
 
 import Input from "../Input";
 import Button from "../Button";
-import { Choice} from "../DecisionMaker";
+import { Attribute, Choice } from "../DecisionMaker";
 import { ButtonContainer } from "./AddAttribute";
 
 const AddChoice = ({
     cancelAddChoice,
-    addChoice
+    addChoice,
+    attributes
 }: AddChoiceProps) => {
     const [choiceName, setChoiceName] = useState<string>("");
+
+    //initialise choice attribute values at 0
+    const [attributeValues, setAttributeValues] = useState<{ [key: string]: number }>(
+        attributes.reduce((value, currentValue) => {
+            return {
+                ...value,
+                [currentValue.name]: 0
+            }
+        }, {})
+    );
 
     const handleAddChoice = () => {
         addChoice({
@@ -29,6 +40,23 @@ const AddChoice = ({
                 value={choiceName}
                 onChange={(value: React.FormEvent<HTMLInputElement>) => setChoiceName(value.currentTarget.value)}
             />
+
+            <p>Attributes: </p>
+
+            {attributes.map(attribute =>
+                <Input
+                    required
+                    type="number"
+                    label={attribute.name}
+                    style={{ marginBottom: "1em" }}
+                    name={`${attribute.name}-input`}
+                    value={attributeValues[attribute.name]}
+                    onChange={(value: React.FormEvent<HTMLInputElement>) => setAttributeValues({
+                        ...attributeValues,
+                        [attribute.name]: parseInt(value.currentTarget.value)
+                    })}
+                />
+            )}
 
             <ButtonContainer>
                 <Button
@@ -52,6 +80,7 @@ const AddChoice = ({
 interface AddChoiceProps {
     cancelAddChoice: () => void;
     addChoice: ({}: Choice) => void;
+    attributes: Attribute[];
 }
 
 export default AddChoice;

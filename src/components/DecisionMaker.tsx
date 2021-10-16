@@ -40,6 +40,22 @@ const DecisionMaker = () => {
             ...attributes,
             attribute
         ]);
+
+        setElements([
+            ...elements,
+            {
+                id: (elements.length++).toString(),
+                type: 'input',
+                data: { label:
+                        <AttributeContainer>
+                            <h3>{attribute.name}</h3>
+                            <p>Weight: {attribute.weight}</p>
+                        </AttributeContainer>
+                },
+                position: { x: (attributes.length + 1) * 200, y: 100 },
+            },
+        ]);
+
         setAddingAttribute(false);
     };
 
@@ -48,6 +64,7 @@ const DecisionMaker = () => {
             ...choices,
             choice
         ]);
+
         setAddingChoice(false);
     };
 
@@ -71,6 +88,7 @@ const DecisionMaker = () => {
             {addingChoice &&
             <Modal onClose={() => setAddingChoice(false)}>
                 <AddChoice
+                    attributes={attributes}
                     addChoice={(choice) => handleAddChoice(choice)}
                     cancelAddChoice={() => setAddingChoice(false)}
                 />
