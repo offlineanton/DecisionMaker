@@ -13,7 +13,8 @@ export const ButtonContainer = styled.div`
 
 const AddAttribute = ({
     cancelAddAttribute,
-    addAttribute
+    addAttribute,
+    attributes
 }: AddAttributeProps) => {
     const [attributeName, setAttributeName] = useState<string>("");
     const [attributeWeight, setAttributeWeight] = useState<number>(1);
@@ -24,6 +25,11 @@ const AddAttribute = ({
             weight: attributeWeight
         });
     };
+
+    // Ensure attribute has value and name is unique
+    const addAttributeDisabled = !attributeName
+        || !attributeWeight
+        || attributes.some(({ name }) => name === attributeName);
 
     return (
         <>
@@ -56,7 +62,7 @@ const AddAttribute = ({
                 </Button>
 
                 <Button
-                    disabled={!attributeName || !attributeWeight}
+                    disabled={addAttributeDisabled}
                     onClick={handleAddAttribute}
                     color="blue"
                 >
@@ -70,6 +76,7 @@ const AddAttribute = ({
 interface AddAttributeProps {
     cancelAddAttribute: () => void;
     addAttribute: ({}: Attribute) => void;
+    attributes: Attribute[];
 }
 
 export default AddAttribute;

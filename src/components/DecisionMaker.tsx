@@ -60,12 +60,13 @@ const DecisionMaker = () => {
     };
 
     const handleAddChoice = (choice: Choice) => {
-        setChoices([
-            ...choices,
-            choice
-        ]);
-
-        setAddingChoice(false);
+        console.log(choice);
+        // setChoices([
+        //     ...choices,
+        //     choice
+        // ]);
+        //
+        // setAddingChoice(false);
     };
 
     return (
@@ -79,6 +80,7 @@ const DecisionMaker = () => {
             {addingAttribute &&
             <Modal onClose={() => setAddingAttribute(false)}>
                 <AddAttribute
+                    attributes={attributes}
                     addAttribute={(attribute) => handleAddAttribute(attribute)}
                     cancelAddAttribute={() => setAddingAttribute(false)}
                 />
@@ -105,6 +107,9 @@ export interface Attribute {
 
 export interface Choice {
     name: string;
+    attributeValues: {
+        [key: string]: number
+    }
 }
 
 interface Element {

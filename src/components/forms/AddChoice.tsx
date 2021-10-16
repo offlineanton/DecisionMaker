@@ -25,6 +25,7 @@ const AddChoice = ({
     const handleAddChoice = () => {
         addChoice({
             name: choiceName,
+            attributeValues
         });
     };
 
@@ -47,6 +48,7 @@ const AddChoice = ({
                 <Input
                     required
                     type="number"
+                    key={attribute.name}
                     label={attribute.name}
                     style={{ marginBottom: "1em" }}
                     name={`${attribute.name}-input`}
