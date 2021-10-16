@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
+import colors from "../constants/colors";
+
 const Button = styled.button<ButtonProps>`
     outline: none;
     border: none;
@@ -9,25 +11,30 @@ const Button = styled.button<ButtonProps>`
     cursor: pointer;
     text-transform: uppercase;
     font-weight: bold;
+    background: ${colors.black};
+    color: white;
     
     ${({ color }) => {
         switch (color) {
             case "white":
                 return `
-                    background: white;
-                    color: #161616;
+                    background: ${colors.white};
+                    color: ${colors.black};
                 `;
-            case "black":
+            case "blue": 
                 return `
-                    background: #161616;
-                    color: white;
+                    background: ${colors.blue};
                 `;
         }    
     }}
+    
+    &:disabled {
+        opacity: 0.7;
+    }
 `;
 
 interface ButtonProps {
-    color: string;
+    color?: string;
 }
 
 export default Button;

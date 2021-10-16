@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import ReactFlow, { addEdge, Handle, ReactFlowProps } from 'react-flow-renderer';
+
 import Modal from "./Modal";
 import DecisionScreen from "./DecisionScreen";
 import Sidebar from "./Sidebar";
+import AddAttribute from "./forms/AddAttribute";
 
 const AttributeContainer = styled.div`
     padding: 0 1em;
@@ -26,7 +27,17 @@ const initialElements: Element[] = [];
 
 const DecisionMaker = () => {
     const [elements, setElements] = useState<Element[]>(initialElements);
+
     const [addingAttribute, setAddingAttribute] = useState(false);
+    const [attributes, setAttributes] = useState<Attribute[]>([]);
+
+    const handleAddAttribute = (attribute: Attribute) => {
+        setAttributes([
+            ...attributes,
+            attribute
+        ]);
+        setAddingAttribute(false);
+    };
 
     return (
         <FlexContainer>
@@ -37,13 +48,20 @@ const DecisionMaker = () => {
 
             {addingAttribute &&
             <Modal onClose={() => setAddingAttribute(false)}>
-                test
+                <AddAttribute
+                    addAttribute={(attribute) => handleAddAttribute(attribute)}
+                    cancelAddAttribute={() => setAddingAttribute(false)}
+                />
             </Modal>
             }
         </FlexContainer>
     );
 };
 
+export interface Attribute {
+    name: string;
+    weight: number;
+}
 
 interface Element {
     id: string;

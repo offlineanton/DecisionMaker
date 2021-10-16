@@ -1,10 +1,12 @@
 import React, { Dispatch, SetStateAction } from "react";
 import styled from "styled-components";
+
 import Button from "./Button";
+import colors from "../constants/colors";
 
 const SidebarContainer = styled.div`
     width: 200px;
-    background: #fbfbfb;
+    background: ${colors.white};
     color: white;
     height: 100%;
 `;
@@ -37,15 +39,15 @@ const Sidebar = ({
 
             <Actions>
                 <Button
+                    color="blue"
                     onClick={() => setAddingAttribute(true)}
                     style={{ marginBottom: "1em" }}
-                    color="black"
                 >
                     Add Attribute
                 </Button>
 
                 <Button
-                    color="black"
+                    color="blue"
                 >
                     Add Choice
                 </Button>

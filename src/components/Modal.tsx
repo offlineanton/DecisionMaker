@@ -21,7 +21,7 @@ const ModalInner = styled.div`
     min-width: 500px;
     position: relative;
     background: white;
-    padding: 3em
+    padding: 2em;
 `;
 
 const Modal = ({
