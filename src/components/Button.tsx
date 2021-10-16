@@ -13,6 +13,15 @@ const Button = styled.button<ButtonProps>`
     font-weight: bold;
     background: ${colors.black};
     color: white;
+    transition: background 0.05s;
+    
+    &:hover {
+        background: ${colors.black};
+    }
+    
+    &:disabled {
+        opacity: 0.7;
+    }
     
     ${({ color }) => {
         switch (color) {
@@ -20,17 +29,21 @@ const Button = styled.button<ButtonProps>`
                 return `
                     background: ${colors.white};
                     color: ${colors.black};
+                    
+                    &:hover {
+                        background: ${colors.lightGrey};
+                    }
                 `;
             case "blue": 
                 return `
                     background: ${colors.blue};
+                    
+                    &:hover {
+                        background: ${colors.darkBlue};
+                    }
                 `;
         }    
     }}
-    
-    &:disabled {
-        opacity: 0.7;
-    }
 `;
 
 interface ButtonProps {

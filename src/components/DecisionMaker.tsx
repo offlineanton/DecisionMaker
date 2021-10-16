@@ -5,6 +5,7 @@ import Modal from "./Modal";
 import DecisionScreen from "./DecisionScreen";
 import Sidebar from "./Sidebar";
 import AddAttribute from "./forms/AddAttribute";
+import AddChoice from "./forms/AddChoice";
 
 const AttributeContainer = styled.div`
     padding: 0 1em;
@@ -31,12 +32,23 @@ const DecisionMaker = () => {
     const [addingAttribute, setAddingAttribute] = useState(false);
     const [attributes, setAttributes] = useState<Attribute[]>([]);
 
+    const [addingChoice, setAddingChoice] = useState(false);
+    const [choices, setChoices] = useState<Choice[]>([]);
+
     const handleAddAttribute = (attribute: Attribute) => {
         setAttributes([
             ...attributes,
             attribute
         ]);
         setAddingAttribute(false);
+    };
+
+    const handleAddChoice = (choice: Choice) => {
+        setChoices([
+            ...choices,
+            choice
+        ]);
+        setAddingChoice(false);
     };
 
     return (
@@ -54,6 +66,15 @@ const DecisionMaker = () => {
                 />
             </Modal>
             }
+
+            {addingChoice &&
+            <Modal onClose={() => setAddingChoice(false)}>
+                <AddChoice
+                    addChoice={(choice) => handleAddChoice(choice)}
+                    cancelAddChoice={() => setAddingChoice(false)}
+                />
+            </Modal>
+            }
         </FlexContainer>
     );
 };
@@ -61,6 +82,10 @@ const DecisionMaker = () => {
 export interface Attribute {
     name: string;
     weight: number;
+}
+
+export interface Choice {
+    name: string;
 }
 
 interface Element {
