@@ -24,7 +24,8 @@ const Actions = styled.div`
 `;
 
 const Sidebar = ({
-    setAddingAttribute
+    addAttribute,
+    addChoice
 }: SidebarProps) => {
     return (
         <SidebarContainer>
@@ -40,7 +41,7 @@ const Sidebar = ({
             <Actions>
                 <Button
                     color="blue"
-                    onClick={() => setAddingAttribute(true)}
+                    onClick={addAttribute}
                     style={{ marginBottom: "1em" }}
                 >
                     Add Attribute
@@ -48,6 +49,7 @@ const Sidebar = ({
 
                 <Button
                     color="blue"
+                    onClick={addChoice}
                 >
                     Add Choice
                 </Button>
@@ -57,7 +59,8 @@ const Sidebar = ({
 };
 
 interface SidebarProps {
-    setAddingAttribute: Dispatch<SetStateAction<boolean>>;
+    addAttribute: () => void;
+    addChoice: () => void;
 }
 
 export default Sidebar;

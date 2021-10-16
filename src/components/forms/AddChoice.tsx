@@ -19,7 +19,7 @@ const AddChoice = ({
 
     return (
         <>
-            <h3 style={{ marginTop: "0" }}>Add Attribute</h3>
+            <h3 style={{ marginTop: "0" }}>Add Choice</h3>
 
             <Input
                 required
@@ -42,7 +42,7 @@ const AddChoice = ({
                     onClick={handleAddChoice}
                     color="blue"
                 >
-                    Add Attribute
+                    Add Choice
                 </Button>
             </ButtonContainer>
         </>

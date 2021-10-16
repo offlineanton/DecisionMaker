@@ -54,7 +54,8 @@ const DecisionMaker = () => {
     return (
         <FlexContainer>
             <Sidebar
-                setAddingAttribute={setAddingAttribute}
+                addAttribute={() => setAddingAttribute(true)}
+                addChoice={() => setAddingChoice(true)}
             />
             <DecisionScreen elements={elements} />
 
