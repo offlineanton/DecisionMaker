@@ -3,7 +3,11 @@ import styled from "styled-components";
 
 import Input from "../Input";
 import Button from "../Button";
-import { Attribute } from "../DecisionMaker";
+import {
+    Attribute,
+    AttributeContainer, Choice,
+    Element
+} from "../DecisionMaker";
 
 export const ButtonContainer = styled.div`
     display: flex;
@@ -13,17 +17,51 @@ export const ButtonContainer = styled.div`
 
 const AddAttribute = ({
     cancelAddAttribute,
-    addAttribute,
-    attributes
+    // addAttribute,
+    attributes,
+    elements,
+    setAttributes,
+    setElements,
+    choices
 }: AddAttributeProps) => {
     const [attributeName, setAttributeName] = useState<string>("");
     const [attributeWeight, setAttributeWeight] = useState<number>(1);
 
     const handleAddAttribute = () => {
-        addAttribute({
-            name: attributeName,
-            weight: attributeWeight
-        });
+        const elementId = (elements.length + 1).toString();
+
+        setAttributes([
+            ...attributes,
+            {
+                name: attributeName,
+                weight: attributeWeight,
+                id: elementId
+            }
+        ]);
+
+        setElements([
+            ...elements,
+            {
+                id: elementId,
+                type: 'input',
+                data: { label:
+                        <AttributeContainer>
+                            <h3>{attributeName}</h3>
+                            <p>Weight: {attributeWeight}</p>
+                        </AttributeContainer>
+                },
+                position: { x: (attributes.length + 1) * 200, y: 100 },
+            },
+            // loop through choices and connect them to the new attribute
+            ...choices.map(choice => ({
+                id: `e${elementId}-${choice.id}`,
+                source: elementId,
+                target: choice.id,
+                animated: true,
+            }))
+        ]);
+
+        cancelAddAttribute();
     };
 
     // Ensure attribute has value and name is unique
@@ -63,7 +101,7 @@ const AddAttribute = ({
 
                 <Button
                     disabled={addAttributeDisabled}
-                    onClick={handleAddAttribute}
+                    onClick={() => handleAddAttribute()}
                     color="blue"
                 >
                     Add Attribute
@@ -74,9 +112,13 @@ const AddAttribute = ({
 };
 
 interface AddAttributeProps {
+    setElements: React.Dispatch<React.SetStateAction<Element[]>>;
     cancelAddAttribute: () => void;
-    addAttribute: ({}: Attribute) => void;
+    // addAttribute: ({}: Attribute) => void;
+    elements: Element[];
+    choices: Choice[];
     attributes: Attribute[];
+    setAttributes: React.Dispatch<React.SetStateAction<Attribute[]>>;
 }
 
 export default AddAttribute;
