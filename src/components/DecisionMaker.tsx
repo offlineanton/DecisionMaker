@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
+import colors from "../constants/colors";
+
 import Modal from "./Modal";
 import DecisionScreen from "./DecisionScreen";
 import Sidebar from "./Sidebar";
@@ -9,7 +11,7 @@ import AddChoice from "./forms/AddChoice";
 
 export const AttributeContainer = styled.div`
     padding: 0 1em;
-    color: black;
+    color: ${colors.black};
     width: 150px;
     text-align: left;
     

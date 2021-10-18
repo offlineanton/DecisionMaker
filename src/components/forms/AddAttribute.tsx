@@ -5,7 +5,8 @@ import Input from "../Input";
 import Button from "../Button";
 import {
     Attribute,
-    AttributeContainer, Choice,
+    AttributeContainer,
+    Choice,
     Element
 } from "../DecisionMaker";
 
@@ -17,7 +18,6 @@ export const ButtonContainer = styled.div`
 
 const AddAttribute = ({
     cancelAddAttribute,
-    // addAttribute,
     attributes,
     elements,
     setAttributes,

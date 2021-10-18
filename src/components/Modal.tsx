@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
+import colors from "../constants/colors";
+
 const ModalWrapper = styled.div`
     display: auto;
     top: 0;
@@ -20,7 +22,7 @@ const ModalWrapper = styled.div`
 const ModalInner = styled.div`
     min-width: 500px;
     position: relative;
-    background: white;
+    background: ${colors.white};
     padding: 2em;
 `;
 

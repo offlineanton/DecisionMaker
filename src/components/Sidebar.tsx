@@ -7,14 +7,14 @@ import colors from "../constants/colors";
 const SidebarContainer = styled.div`
     width: 200px;
     background: ${colors.white};
-    color: white;
+    color: ${colors.white};
     height: 100%;
 `;
 
 const Title = styled.h1`
     text-transform: uppercase;
     font-weight: 500;
-    color: black;
+    color: ${colors.black};
     font-size: 1.7em;
     padding: 0.5em;
 `;

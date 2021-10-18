@@ -1,4 +1,4 @@
-import React, {Dispatch, SetStateAction, useState} from "react";
+import React, { useState } from "react";
 
 import Input from "../Input";
 import Button from "../Button";
@@ -51,7 +51,7 @@ const AddChoice = ({
         };
         const elementId = (elements.length + 1).toString();
 
-        // loop through attributes and multiple them to the choice values, then get the sum of them all
+        // loop through attributes and multiply them to the choice values, then get the sum of them all
         const score = calculateScore(choice);
 
         const newChoices = [

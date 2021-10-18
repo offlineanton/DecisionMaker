@@ -2,8 +2,10 @@ import React from "react";
 import styled from "styled-components";
 import ReactFlow from "react-flow-renderer";
 
+import colors from "../constants/colors";
+
 const DecisionMakerContainer = styled.div`
-    background: #111926;
+    background: ${colors.darkBlue};
     height: 100%;
     flex-grow: 1;
 `;
